@@ -1,0 +1,19 @@
+default:
+  paths:
+    features: %behat.paths.base%/../features/easyair
+    bootstrap: %behat.paths.base%/../features/bootstrap
+    
+  context:
+    class: EasyAirFeatureContext
+
+  extensions:
+    Behat\MinkExtension\Extension:
+      default_session: selenium2
+      base_url: 'http://127.0.0.1:9090'
+      goutte: ~
+      selenium2: ~
+
+    SensioLabs\Behat\PageObjectExtension\Extension: ~
+
+    Drupal\DrupalExtension\Extension: 
+      blackbox: ~
