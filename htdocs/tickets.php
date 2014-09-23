@@ -3,12 +3,18 @@ $children = filter_input(INPUT_POST, 'children');
 $adults = filter_input(INPUT_POST, 'adults');
 $youths = filter_input(INPUT_POST, 'youths');
 $seniors = filter_input(INPUT_POST, 'seniors');
+$tandc = filter_input(INPUT_POST, 'tandc');
 if ($children && !($adults || $seniors)) {
   $message = 'Children cannot travel alone';
 }
 if ($adults || $seniors || $youths) {
-  header('Location: /prices.php');
-  exit;
+  if ($tandc) {
+    header('Location: /prices.php');
+    exit;
+  }
+  else {
+    $message = 'You must accept the terms and conditions';
+  }
 }
 ?>
 <html>
@@ -61,6 +67,7 @@ if (!empty($message)) {
 <option value="2">2</option>
 </select> 
 <br/>
+<input type="checkbox" name="tandc" value="tanc">I accept the terms and conditions<br/>
 <input type="submit" value="Search for tickets"></input>
 </form>
 </div>
